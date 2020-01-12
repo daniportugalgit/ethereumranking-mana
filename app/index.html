@@ -12,7 +12,7 @@
 <body onresize="App.onResize()">
   <nav class="navbar navbar-expand-md navbar-light bg-light" id="navb">
     <div id="top_left">
-      <img src="./app/img/MTGNoon-Ranking.jpg" width="300px" id="systemLogo">
+      <img src="http://funpowerhouse.com/ranking/img/MTGNoon-Ranking.jpg" width="300px" id="systemLogo">
     </div>
 
     <button class="navbar-toggler"
@@ -32,11 +32,11 @@
           <a class="nav-link active">Ranking</a>
         </li>
 
-        <li class="nav-item clickable" id="menu-item-admin" onclick="App.showSection('sec_tournaments')">
+        <li class="nav-item clickable" id="menu-item-campeonatos" onclick="App.showSection('sec_tournaments')">
           <a class="nav-link">Campeonatos</a>
         </li>
 
-        <li class="nav-item clickable" id="menu-item-admin" onclick="App.showSection('sec_admin')">
+        <li class="nav-item clickable" id="menu-item-admin" style="display: none;" onclick="App.showSection('sec_admin')">
           <a class="nav-link">Admin</a>
         </li>
       </ul>
@@ -67,12 +67,13 @@
     </div>
   </div>
 
-  <div class="container">    
-    <div class="flexbox">
+  <div class="flexbox">
       <div id="loader" class="animate-bottom" style="display: block;">
       </div>
     </div>
 
+  <div class="container" style="display: none;">    
+    
     <div id="contentWrapper">
       <section id="sec_ranking">
       </section>
@@ -82,11 +83,11 @@
         </div>
       </section>
 
-      <section id="sec_admin">
+      <section id="sec_admin" style="display: none;">
         <div class="d-flex justify-content-center">
           
           <div class="card marginalized" style="width: 23rem;">
-            <img src="./app/img/newPlayer.jpg" class="card-img-top" alt="New Player">
+            <img src="http://funpowerhouse.com/ranking/img/newPlayer.jpg" class="card-img-top" alt="New Player">
             <div class="card-body">
               <h5 class="card-title">Registrar Jogador</h5>
               <p class="card-text" id="newPlayer_text">Registra na blockchain um jogador que poderá participar de campeonatos.</p>
@@ -135,7 +136,7 @@
           </div>
 
           <div class="card marginalized" style="width: 23rem;">
-            <img src="./app/img/newTournament.jpg" class="card-img-top" alt="New Tournament">
+            <img src="http://funpowerhouse.com/ranking/img/newTournament.jpg" class="card-img-top" alt="New Tournament">
             <div class="card-body">
               <h5 class="card-title">Registrar Campeonato</h5>
               <p class="card-text" id="newTournament_text">Registra na blockchain o resultado de um novo campeonato.</p>
@@ -181,7 +182,7 @@
     </div>
   </div>
 
-  <div id="version">
+  <div id="version" style="display: none;">
     <p id="versionLabel">v 0.9.3</p>
   </div>
 

@@ -52,26 +52,27 @@ function addNetworkWarningDiv() {
 function setEnvironmentWarning() {
   if(_localDev) {
     $("#network_div").html("Running in local environment");
-    $("#network_div").css("backgroundColor", "darkgreen");
+    $("#network_div").css("backgroundColor", "darkblue");
     $("#network_div").show();
     console.log("Metamon :: Connected to local network.");
     return;
   }
 
   if(currentNetwork() == 1) {
-    $("#network_div").html("ERRO: Para continuar, selecione a rede Ropsten no Metamask.");
-    $("#network_div").show();
+    //$("#network_div").html("ERRO: Para continuar, selecione a rede Ropsten no Metamask.");
+    //$("#network_div").show();
+    $("#network_div").hide();
     console.log("Metamon :: Connected to MAINNET.");
   } else if(currentNetwork() != 3) {
     //$("#network_div").html("To continue, please select the Ropsten network in Metamask.");
-    $("#network_div").html("ERRO: Para continuar, selecione a rede Ropsten no Metamask.");
+    $("#network_div").html("ERRO: Para continuar, selecione a rede Ropsten ou a rede Principal no Metamask.");
     $("#network_div").show();
     console.log("Metamon :: Stopped: network must be either Local, or Ropsten, or Mainnet.");
   } else {
-    //$("#network_div").html("Ambiente de testes: Ropsten.");
-    //$("#network_div").css("backgroundColor", "darkgreen");
-    //$("#network_div").show();
-    $("#network_div").hide();
+    $("#network_div").html("Ambiente de testes: Ropsten.");
+    $("#network_div").css("backgroundColor", "darkgreen");
+    $("#network_div").show();
+    //$("#network_div").hide();
     console.log("Metamon :: Connected to Ropsten network.");
   }
 }

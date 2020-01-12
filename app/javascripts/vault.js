@@ -8,13 +8,13 @@ const formats = ["Draft", "Modern", "Commander", "Tiny Leaders", "2HG",
 const fbGraphURL = "http://graph.facebook.com/"
 const fbGraphParams = "/picture?type=large";
 
-var _mainnet = "0x0000000000000000000000000000000000000000";
-var _ropsten = "0x879CC9470406560fBA59775503E116D80F8f53bf";
+var _mainnet = "0xCd4E86682B66255c34290a22a5e7822dc2F0B366";
+var _ropsten = "0x4c2A1605bbA1eA99c84C520832E4C37ED703C493";
 var _currentContractAddress = _ropsten;
 
 var _deployBlockLocal = 1;
-var _deployBlockRopsten = 7105525;
-var _deployBlockMainnet = 1000000;
+var _deployBlockRopsten = 7114853;
+var _deployBlockMainnet = 9268463;
 var _currentDeployBlock = _deployBlockLocal;
 
 var _etherscanRopstenURL = "https://ropsten.etherscan.io/tx/";

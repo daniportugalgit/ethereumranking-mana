@@ -29,6 +29,8 @@ window.App = {
   start: async function() {
     var self = this;
         
+    Vault.setEnvironment(Metamon.currentNetwork());
+
     await App.initContracts();
 
     Metamon.init(App.onMetamaskError,
@@ -37,14 +39,11 @@ window.App = {
                  App.onMetamaskDisconnect,
                  _localDev, true);
 
-    Vault.setEnvironment(Metamon.currentNetwork());
-
     Gasmon.init();
     
     App.initMenu();    
     App.getAllAddresses();
     App.showSection(Vault.sections[0]);
-    App.updateVersion();
     App.populateTournamentFormats();
     //App.hideLoader(); //done after fetching the ranking
   },
@@ -111,10 +110,12 @@ window.App = {
       $("#" + "admin" + "_badge").show();
       Ui.enableButton("newPlayer");
       Ui.enableButton("newTournament");
+      $("#menu-item-admin").show();
     } else {
       $("#" + "admin" + "_badge").hide();
       Ui.disableButton("newPlayer");
       Ui.disableButton("newTournament");
+      $("#menu-item-admin").hide();
     }
   },
 
@@ -129,7 +130,7 @@ window.App = {
     if(result.fbId != 0)
       $("#user_image_div").html("<img src=\"" + Vault.fbGraphURL + parseInt(result.fbId) + Vault.fbGraphParams + "\" width=\"50px\">");
     else
-      $("#user_image_div").html("<img src=\"./app/img/default-user.jpg\" width=\"50px\">");
+      $("#user_image_div").html("<img src=\"http://funpowerhouse.com/ranking/img/default-user.jpg\" width=\"50px\">");
   },
 
   getAllAddresses: function() {
@@ -198,10 +199,11 @@ window.App = {
 
     App.hideLoader();
     App.getTournaments();
+    App.updateVersion();
   },
 
   getPlayerHtmlVirginBlock(rank) {
-    return "<div class=\"d-flex justify-content-center\"><div id=\"rank_" + rank + "\" class=\"imageRank\"><div class=\"player_badge\"></div><div class=\"rank_bg\"><img src=\"./app/img/playerItem.png\"></div><div class=\"player_picture_div\"></div><div class=\"player_name_div\"><div class=\"player_text_div\"></div></div><div class=\"player_points_generic player_points_div\"></div><div class=\"player_points_generic player_points_small player_1st_div\"></div><div class=\"player_points_generic player_points_small player_2nd_div\"></div><div class=\"player_points_generic player_points_small player_3rd_div\"></div></div></div>";
+    return "<div class=\"d-flex justify-content-center\"><div id=\"rank_" + rank + "\" class=\"imageRank\"><div class=\"player_badge\"></div><div class=\"rank_bg\"><img src=\"http://funpowerhouse.com/ranking/img/playerItem.png\"></div><div class=\"player_picture_div\"></div><div class=\"player_name_div\"><div class=\"player_text_div\"></div></div><div class=\"player_points_generic player_points_div\"></div><div class=\"player_points_generic player_points_small player_1st_div\"></div><div class=\"player_points_generic player_points_small player_2nd_div\"></div><div class=\"player_points_generic player_points_small player_3rd_div\"></div></div></div>";
   },
 
   fillRankItem: function(rank) {
@@ -214,7 +216,7 @@ window.App = {
     myDiv.children(".player_1st_div").html(myPlayer.first);
     myDiv.children(".player_2nd_div").html(myPlayer.second);
     myDiv.children(".player_3rd_div").html(myPlayer.third);
-    myDiv.children(".player_badge").html("<img src=\"./app/img/medals/m_" + Math.min(myPlayer.first,20) + ".png\" width=\"100px\"></img>");
+    myDiv.children(".player_badge").html("<img src=\"http://funpowerhouse.com/ranking/img/medals/m_" + Math.min(myPlayer.first,20) + ".png\" width=\"100px\"></img>");
   },
 
   onGetPlayerError: function(functionName, error) {
@@ -374,6 +376,7 @@ window.App = {
 
   updateVersion: function() {
     $('#versionLabel').html("v " + Vault.version);
+    $('#versionLabel').show();
   },
 
   copyUserToClipboard: function() {
