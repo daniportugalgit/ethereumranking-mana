@@ -219,8 +219,8 @@ window.App = {
     myDiv.children(".player_badge").html("<img src=\"http://funpowerhouse.com/ranking/img/medals/m_" + Math.min(myPlayer.first,20) + ".png\" width=\"100px\"></img>");
   },
 
-  onGetPlayerError: function(functionName, error) {
-    console.log("*[ERROR] PLAYERS RESULT: " + error.message);
+  onGetPlayerError: function(functionName, message) {
+    console.log("*[ERROR] PLAYERS RESULT: " + message);
   },
 
   newTournament: function() {
