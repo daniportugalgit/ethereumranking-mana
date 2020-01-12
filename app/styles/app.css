@@ -1,0 +1,494 @@
+body {
+  margin:0;
+  padding:0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  background-color: gray;
+}
+
+canvas {
+  display:block;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+input {
+  width: 500px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  padding: 5px;
+}
+
+h1, h2 {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #AAA;
+  font-size: 32px;
+}
+
+h3 {
+  font-weight: normal;
+  color: #AAA;
+  font-size: 24px;
+}
+
+.clickable {
+  cursor:pointer;
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.small_text {
+  font-size: 0.75em;
+}
+
+.medium_text {
+  font-size: 0.85em; 
+}
+
+.marginalized {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.bc_response {
+  border: 1px solid gray;
+  font-size: 0.7em;
+  margin-top: 18px;
+  margin-bottom: 0px;
+  padding:4px;
+}
+
+.bc_response_large {
+  font-size: 1.3em;
+  margin-top: 15px;
+  margin-bottom: 0; 
+  background-color: floralwhite;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+#totalSupply_mini_loader, #balanceOf_mini_loader, #mint_mini_loader, #burn_mini_loader, #hasRole_mini_loader, #addRole_mini_loader, #removeRole_mini_loader, #isBlacklisted_mini_loader, #freezeAccount_mini_loader, #unfreezeAccount_mini_loader, #wipeBlacklistedAccount_mini_loader, #pause_mini_loader, #unpause_mini_loader, #reclaimToken_mini_loader {
+  left: 44%;
+  width: 50px;
+  height: 50px;
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#contentWrapper {
+  display: none;
+  text-align: center;
+  margin-top:40px;
+}
+
+#logo {
+  
+}
+
+.clear {
+  clear:both;
+}
+
+#speed_div {
+  position:absolute;
+  right:280px;
+  top:4px;
+  margin:0; 
+  padding:0;
+  width:40px;
+  height:40px;
+  text-align: center;
+  font-size: 0.7em;
+  border:1px solid gray;
+  border-radius: 20%;
+  background-color: #F0F0F0;
+  cursor:pointer;
+}
+
+#speed_button_div {
+  margin:0;
+  padding-top:2px;
+}
+
+#speed_info_div {
+  margin:0;
+  padding-top:1px;
+}
+
+#user_div {
+  position:relative;
+  float:right;
+  margin:0; 
+  padding:0;
+  width:345px;
+  border:1px solid black;
+}
+
+#user_subcontainer {
+  height:40px;
+}
+
+#user_address_div {
+  margin:0;
+  padding:0;
+}
+
+#user_address {
+  font-size:0.7em;
+  color:gray;
+  margin:0;
+  padding:6px;
+  cursor:pointer;
+}
+
+#user_name {
+  position:relative;
+  bottom:5px;
+}
+
+#user_image_div {
+  float:left;
+  margin-right:10px;
+  
+}
+
+.light_badge {
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 2px 1px 0 0;
+  padding: 0px 4px;
+  font-size: 0.6em;
+  font-weight: bold;
+}
+
+#badges {
+  position:relative;
+  bottom: 3px;
+}
+
+#admin_badge {
+  background-color: sandybrown;
+  float:right;
+  position:relative;
+  margin-right:10px;
+}
+
+#connect_button_div {
+  position:relative;
+}
+
+#network_div {
+  margin:0 auto;
+  background-color: red;
+  height:20px;
+  text-align: center;
+  font-size: 0.8em;
+  color:white;
+  padding-top:1px;
+}
+
+
+#newPlayer_button, #newTournament_button, #connectToMetamask_button {
+  border: 1px solid #2387ca;
+  background-color: #2387ca;
+}
+
+#version {
+  position:fixed;
+  right:20px;
+  bottom:0px;
+  color:gray;
+  font-size:0.6em;
+}
+
+#top_left {
+  margin-right:10px;
+}
+
+#systemLogo {
+  margin:0;
+  padding:0;
+}
+
+#navb {
+  padding-top:0;
+  padding-left:0;
+  padding-bottom:0;
+}
+
+
+.wrapper {
+  line-height: 1.5em;
+  margin: 0 auto;
+  padding: 2em 0 3em;
+  width: 90%;
+  max-width: 2000px;
+  overflow: hidden;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+}
+
+th {
+    background-color: #404;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+
+td, th {
+    padding: 1em 1.5em;
+    text-align: left;
+}
+
+tbody th {
+  background-color: #2ea879;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(50,98,149,.3);
+}
+
+td.rank {
+  text-transform: capitalize;
+}
+
+.clip-circle {
+  clip-path: circle(60px at center);
+}
+
+.imageRank {
+  width:441px;
+  height:138px;
+}
+
+.rank_bg {
+  position:absolute;
+  z-index: -1;
+}
+
+.player_badge {
+  position:relative;
+  float:left;
+  top:13px;
+  left:-96px;
+  width:80px;
+  height:80px;
+}
+
+.player_picture_div {
+  float:left;
+  position:relative;
+  top:13px;
+  left:-67px;
+}
+
+.player_points_generic {
+  float:left;
+  position:relative;
+  color:white;
+  text-align:center;
+}
+
+.player_points_div {
+  top:8px;
+  left:-54px;
+  font-size:3.5em;
+  width:100px;
+}
+
+.player_points_small {
+  font-size:2.5em;
+  width:80px;
+  top:20px;
+}
+
+.player_1st_div {
+  left:-43px;
+}
+
+.player_2nd_div {
+  left:-38px;
+}
+
+.player_3rd_div {
+  left:129px;
+  top:-40px;
+}
+
+.player_name_div {
+  position:relative;
+  width:100px;
+  height:20px;
+  background-color: black;
+  opacity:0.8;
+  left:13px;
+  top:93px;
+  text-align:center;
+  color:white;
+  z-index:9999;
+}
+
+.player_text_div {
+  position:absolute;
+  bottom:-2px;
+  text-align:center;
+  width:100px;
+}
+
+.top-margin {
+  margin-top:30px;
+}
+
+#top-left {
+  margin:0;
+  padding:0;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.tournament_container {
+  width:248px;
+  height:134px;
+  border:1px solid #FFE;
+  border-radius:4px;
+  margin:20px;
+}
+
+.tournament_date_div {
+  color:white;
+  position:relative;
+}
+
+.tournament_separator_div {
+  height:26px;
+  background-color: #FFE;
+}
+
+.position_1 {
+  float:left;
+  position:relative;
+  left:38px;
+  top:1px;
+  font-weight: bold;
+}
+
+.position_2 {
+  float:left;
+  position:relative;
+  left:106px;
+  top:1px;
+  font-weight: bold;
+}
+.position_3 {
+  float:left;
+  position:relative;
+  left:173px;
+  top:1px;
+  font-weight: bold;
+}
+
+.tournament_pictures {
+  float:left;
+  border:1px solid white;
+}
+
+.champion_picture_div {
+  
+}
+.vice_champion_picture_div {
+  
+}
+.third_place_picture_div {
+  
+}
+
+.justify-content-center2 {
+  text-align:center;
+}
+
+#metamask_warning {
+  color:white;
+  position:relative;
+  text-align:center;
+  font-size:3em;
+  top:150px;
+}
+
+
+

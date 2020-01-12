@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />  
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Ethereum Ranking - MANA</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body onresize="App.onResize()">
+  <nav class="navbar navbar-expand-md navbar-light bg-light" id="navb">
+    <div id="top_left">
+      <img src="./app/img/MTGNoon-Ranking.jpg" width="300px" id="systemLogo">
+    </div>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" style="display: none;">
+        <li class="nav-item clickable" onclick="App.showSection('sec_ranking')">
+          <a class="nav-link active">Ranking</a>
+        </li>
+
+        <li class="nav-item clickable" id="menu-item-admin" onclick="App.showSection('sec_tournaments')">
+          <a class="nav-link">Campeonatos</a>
+        </li>
+
+        <li class="nav-item clickable" id="menu-item-admin" onclick="App.showSection('sec_admin')">
+          <a class="nav-link">Admin</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="user_div" style="display: none;">
+      <div id="user_subcontainer">
+        <div id="user_address_div" onclick="App.copyUserToClipboard()">
+          <div id="user_image_div"></div>
+          <p id="user_address">0x0000000000000000000000000000000000000000</p>
+          <div id="badges">
+            <span class="light_badge" id="admin_badge" style="display: none;">ADMIN</span>
+          </div>
+          <p id="user_name">Unregistered address</p>
+        </div>
+      </div>
+    </div>
+    <div id="connect_button_div" style="display: none;">
+      <form onSubmit="App.metamaskConnect(); return false;">
+        <button type="submit" class="btn btn-primary" id="connectToMetamask_button">Fazer login no Metamask</button>
+      </form>
+    </div>
+  </nav>
+
+  <div id="metamask_warning" style="display: none;">
+    <div>
+      Para continuar, faça login no Metamask.
+    </div>
+  </div>
+
+  <div class="container">    
+    <div class="flexbox">
+      <div id="loader" class="animate-bottom" style="display: block;">
+      </div>
+    </div>
+
+    <div id="contentWrapper">
+      <section id="sec_ranking">
+      </section>
+
+      <section id="sec_tournaments">
+        <div class="d-flex justify-content-center flex-wrap" id="tournaments_container">
+        </div>
+      </section>
+
+      <section id="sec_admin">
+        <div class="d-flex justify-content-center">
+          
+          <div class="card marginalized" style="width: 23rem;">
+            <img src="./app/img/newPlayer.jpg" class="card-img-top" alt="New Player">
+            <div class="card-body">
+              <h5 class="card-title">Registrar Jogador</h5>
+              <p class="card-text" id="newPlayer_text">Registra na blockchain um jogador que poderá participar de campeonatos.</p>
+              <form id="newPlayer_form" onsubmit="App.newPlayer(); return false;">
+                <div class="form-group">
+                  <label for="newPlayer_name" class="control-label">Nome</label>
+                  <input
+                    required
+                    class="form-control small_text"
+                    id="newPlayer_name"
+                    maxlength="42"
+                    minlength="2"
+                    placeholder="ex: Daniel Portugal" />
+                </div>
+                <div class="form-group">
+                  <label for="newPlayer_address" class="control-label">Endereço</label>
+                  <input
+                    required
+                    class="form-control small_text"
+                    id="newPlayer_address"
+                    maxlength="42"
+                    minlength="42"
+                    placeholder="ex: 0x93e66d9baea28c17d9fc393b53e3fbdd76899da" />
+                </div>
+                <div class="form-group">
+                  <label for="burn_number" class="control-label">Social ID</label>
+                  <input
+                    required
+                    type="number"
+                    step="1"
+                    class="form-control small_text"
+                    id="newPlayer_fbId"
+                    min="0"
+                    placeholder="ex: 1732225227" />
+                </div>
+
+                <input type="submit" name="Submit" value="Submit" style="display: none;"/>
+              </form>
+
+              <button id="newPlayer_button" class="btn btn-primary" onclick="App.newPlayer()">Registrar</button>
+              <div id="newPlayer_mini_loader" class="animate-bottom" style="display: none;"></div>
+              
+              <p id="newPlayer_result" style="display:none"  class="bc_response"></p>
+              
+            </div>
+          </div>
+
+          <div class="card marginalized" style="width: 23rem;">
+            <img src="./app/img/newTournament.jpg" class="card-img-top" alt="New Tournament">
+            <div class="card-body">
+              <h5 class="card-title">Registrar Campeonato</h5>
+              <p class="card-text" id="newTournament_text">Registra na blockchain o resultado de um novo campeonato.</p>
+              <form id="newTournament_form" onsubmit="App.newTournament(); return false;">
+                <div class="form-group">
+                  <label for="newTournament_date" class="control-label">Data</label>
+                  <input
+                    required
+                    class="form-control small_text"
+                    id="newTournament_date"
+                    maxlength="10"
+                    minlength="10"
+                    placeholder="ex: 25/01/2020" />
+                </div>
+
+                <div class="form-group">
+                  <label for="newTournament_format" class="control-label">Formato</label>
+                  <select class="selectpicker form-control small_text" id="newTournament_format"></select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="newTournament_ranking" class="control-label">Ranking</label>
+                  <input
+                    required
+                    class="form-control small_text"
+                    id="newTournament_ranking"
+                    min="0"
+                    placeholder="ex: Alex,Andrés,Bruno,Daniel,Fellipe,Igor,Ivan" />
+                </div>
+                <input type="submit" name="Submit" value="Submit" style="display: none;"/>
+              </form>
+
+              <button id="newTournament_button" class="btn btn-primary" onclick="App.newTournament()">Registrar</button>
+              <div id="newTournament_mini_loader" class="animate-bottom" style="display: none;"></div>
+              
+              <p id="newTournament_result" style="display:none"  class="bc_response"></p>
+              
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="version">
+    <p id="versionLabel">v 0.9.3</p>
+  </div>
+
+  <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="./app.js"></script>
+
+</body>
+</html>
