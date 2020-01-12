@@ -239,6 +239,7 @@ window.App = {
       ranking = Players.getAddressListByAliasList(ranking);
     } catch(error) {
       App.onError(systemName, "ERROR: One or more players not found.");
+      return;
     }
 
     Flow.exec(_instance,
